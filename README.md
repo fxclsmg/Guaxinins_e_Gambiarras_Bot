@@ -1,4 +1,4 @@
-# 🦝 Guaxinins & Gambiarras
+# 🦝 Guaxinins & Gambiarras Bot
 
 Bot para Discord voltado a jogos de RPG de mesa.
 
