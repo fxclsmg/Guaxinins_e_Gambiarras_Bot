@@ -1,0 +1,2 @@
+# Guaxinins-e-Gambiarras
+bot do sistema de rpg Guaxinins e Gambiarras
