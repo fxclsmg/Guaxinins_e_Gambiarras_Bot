@@ -3,7 +3,7 @@
 // let moduloPedraPapelETesoura = require("./pedraPapelETesoura");
 // let moduloNotasMusicais = require("./notasMusicais");
 // let moduloRolagemDeDados = require("./rolagemDeDados");
-require("dotenv").config();
+const config = require("./config");
 const Discord = require("discord.js");
 const bot = new Discord.Client();
 const prefixo = ".";
@@ -11,8 +11,8 @@ const comandoAtributo = "atributo";
 const comandoPainel = ["eu acredito no guaxaverso", "🦝"];
 const comandoAjuda = "ajuda";
 const comandoLimparAtributo = "limpar atributo";
-const token = process.env.BOTTOKENGG; // token G&G
-let jogadores = [process.env.IDBOTGG]; // Id do bot Guaxinins & Gambiarras
+const token = config.token; // token G&G
+let jogadores = [config.botId]; // Id do bot Guaxinins & Gambiarras
 let reacao = [];
 let atributos = [0];
 let nomeJogador = [];
