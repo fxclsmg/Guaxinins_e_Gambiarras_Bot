@@ -16,7 +16,7 @@ const config = {
     alterna_modo_dado: "alterar_modo_dado",
 
     // baralho
-    limpar: "limpar",
+    limpar: "limparbaralho",
     embaralhar: "embaralhar",
     sacar_carta: "b",
     naipe_paus: ":clubs:",

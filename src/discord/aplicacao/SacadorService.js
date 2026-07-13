@@ -1,9 +1,35 @@
 const Baralho = require("../../dominio/Baralho");
+const Canal = require("../../dominio/Canal");
 const config = require("../../config");
+let canais = [];
 
 class SacadorService {
 
-    static sacar(expressao){
+    static localizarCanal(channelId) {
+
+        try {
+
+            let id = null;
+            
+            // Procura canal e recupera o baralho
+            for (let i = 0; i < canais.length; i++) {
+                if (canais[i].id === channelId) {
+                    if (canais[i].baralho)
+                        return i;
+                }
+            }
+            
+            //insere baralho se não encontrar nos canais
+            canais.push(new Canal(channelId, new Baralho()));
+            id = canais.length-1;
+            
+            return id;
+
+        } catch {
+        }
+    }
+    
+    static sacar(channelId, expressao){
         let cartas = [];
         let resultado = [];
         let baralho = null;
@@ -11,25 +37,38 @@ class SacadorService {
 
         try {
 
+            let id = this.localizarCanal(channelId);
+            
+            baralho = canais[id].baralho;
+
             qtdCartas = Number(expressao);
-            baralho = new Baralho();
+            
 
             // valida se pode sacar
-            if (qtdCartas > baralho.cartas.length)
-                throw "Valor muito alto. Valor atual de cartas é " + String(baralho.cartas.length);
-
-            cartas = baralho.sacar_cartas(qtdCartas);
-
-            // formata resultado
-            for (let i = 0; i < cartas.length; i++) {
-                resultado.push(cartas[i].valor_str +  cartas[i].naipe);
+            if (baralho.cartas.length === 0) {
+                return null;
             }
 
-            return resultado;
+            if (qtdCartas > baralho.cartas.length)
+                cartas = baralho.sacar_cartas(baralho.cartas.length);
+            else
+                cartas = baralho.sacar_cartas(qtdCartas);
 
-        } catch {
+            // atualiza o baralho
+            canais[id].baralho = baralho;
+
+            return cartas;
+
+        } catch (e) {
+            throw e;
         }
 
+    }
+
+    static embaralhar(channelId) {
+        let id = this.localizarCanal(channelId);
+        canais[id].baralho = new Baralho();
+        return true;
     }
 
 }

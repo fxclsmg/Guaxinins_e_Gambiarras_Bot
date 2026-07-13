@@ -2,25 +2,49 @@ const Sacador = require("../aplicacao/SacadorService");
 const formatador = require("../formatador");
 const config = require("../../config");
 
-function executar(expressao){
+class baralhos {
 
-    // validar expressao e sair se necessário
-    try {
+    static sacar_cartas(channelId, expressao){
 
-        // Executa rolagem dos dados
-        const resultado = Sacador.sacar(expressao);
-        console.log(resultado);
+        // validar expressao e sair se necessário
+        try {
 
-        // Formata resposta
-        let texto = resultado.join(", ");
+            // Executa rolagem dos dados
+            const resultado = Sacador.sacar(channelId, expressao);
 
-        return texto;
+            if (!(resultado)) {
+                throw new Error(
+                    "O baralho atual tem 0 cartas.\n" + 
+                    "Use o camando " + 
+                    formatador.formatar(
+                        config.prefixo + config.embaralhar, 
+                        config.format_comentario
+                    ) +
+                    " para reembaralhar todas as cartas." 
+                );
+            }
 
-    } catch {
-        // evitar exibir erros no chat
+            // formata resultado
+            let resposta = [];
+
+            for (let i = 0; i < resultado.length; i++) {
+                resposta.push(resultado[i].valor_str + resultado[i].naipe);
+            }
+
+            return resposta.join(", ");
+
+        } catch (e) {
+            return e.message;
+        }
+        
     }
-    
+
+    static embaralhar(channelId) {
+        if (Sacador.embaralhar(channelId))
+            return "54 cartas reembaralhadas.";
+    }
+
 }
 
-module.exports = executar;
+module.exports = baralhos;
 

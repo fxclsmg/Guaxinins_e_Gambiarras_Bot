@@ -1,7 +1,7 @@
     const Carta = require("./Carta");
 
     class Baralho {
-        
+        dataHoraCriacao = null;
         cartas = [];
         
         constructor () {
@@ -10,6 +10,7 @@
                 this.cartas.push(new Carta(c));
             }   
             this.cartas = this.embaralhar(this.cartas);
+            this.dataHoraCriacao = Date.now();
         }
 
         embaralhar(array) {

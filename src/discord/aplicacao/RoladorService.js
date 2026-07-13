@@ -23,13 +23,13 @@ class RoladorService {
         try {
             d = Number(dados);
         } catch {
-            throw "A quantidade de dados deve ser um inteiro positivo.\n";
+            throw new Error("A quantidade de dados deve ser um inteiro positivo.\n");
         }
 
         try {
             f = Number(faces);
         } catch {
-            throw "A quantidade de faces deve ser um inteiro positivo.\n";
+            throw new Error("A quantidade de faces deve ser um inteiro positivo.\n");
         }
 
         if ((d > 0) && (f > 0))             

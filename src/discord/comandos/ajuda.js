@@ -40,28 +40,35 @@ function executar(msg){
         "\n" +
         "**COMANDOS PARA NOTAS MUSICAIS:**" +
         "\n" +
+
         "**" +
         config.prefixo +
         "n + número**: lança um número de dados de 12 lados, com as 7 notas naturais e os 5 acidentes nas faces." +
         "\n" +
 
         "\n" +
-        "**COMANDO PARA O BARALHO:**" +
+        config.format_negrito +
+        "COMANDOS PARA O BARALHO:" +
+        config.format_negrito +
         "\n" +
-        "**" +
-        config.prefixo +
-        "b + número**: saca um número de cartas de baralho." +
+
+        config.format_negrito +
+        config.prefixo + config.sacar_carta + " + número" + 
+        config.format_negrito +
+        ": saca um número de cartas de baralho." +
         "\n" +
-        "**" +
-        config.prefixo +
-        "b + embaralhar**: embaralha todas as 54 cartas no canal de texto atual." +
+
+        config.format_negrito +
+        config.prefixo + config.embaralhar +
+        config.format_negrito +
+        ": embaralha todas as 54 cartas no canal de texto atual." +
         "\n" +
+
         "**" +
         config.prefixo +
         "limpar baralho**: apaga o baralho do canal de texto atual, juntamente com as IDs e dados armazenados." +
         "\n" +
         "**" +
-
         config.prefixo +
         "limpar hora**: apaga da memória as horas armazenadas das ultimas mensagens do bot." +
         "\n" +

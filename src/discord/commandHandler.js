@@ -46,22 +46,27 @@ function executar(msg) {
 
     // rolagem com prefixo
     else if (mensagem.startsWith(config.rolar_dado)) {
-        let comando = mensagem.substring(1);
+        let comando = mensagem.substring(config.rolar_dado.length);
         resposta = dados(comando);
     }
 
     // altera modo do dado
     else if (mensagem.startsWith(config.alterna_modo_dado)) {
-        let comando = mensagem.substring(1);
         config.dados_simplificados = !config.dados_simplificados;
         resposta = "Modo do dado alterado para ";         
         resposta += config.dados_simplificados ? "simples" : "comando";
     }
 
     // baralho 
+
+    //sacar carta
     else if (mensagem.startsWith(config.sacar_carta)) {
-        let comando = mensagem.substring(1);
-        resposta = baralhos(comando);
+        let comando = mensagem.substring(config.sacar_carta.length);
+        resposta = baralhos.sacar_cartas(msg.channel.id, comando);
+    }
+    //embaralhar
+    else if (mensagem.startsWith(config.embaralhar)) {
+        resposta = baralhos.embaralhar(msg.channel.id);
     }
 
     // Adicionar piada de comando falho com prefixo
