@@ -4,29 +4,42 @@ const config = {
     // ambiente  
     token: process.env.BOTTOKENGG,
     botId: process.env.IDBOTGG,
-    dados_simplificados: false, //ligar somente se necessario
-    debug: true,
+    debug: false, //para logar terminal se necessario 
+
+    //controle dos comandos de ajuda
+    controle_ajuda: true,
+    controle_dado_comando: true,
+    controle_baralho: true,
+    controle_dado_simples: false, //ligar somente se necessario
+
+    controle_dado_comando_modificador: false,
+    controle_dado_reacao: false,
+    controle_painel: false,
+    controle_atributo: false,
+    controle_limpar_atributo: false,
+    controle_notas_musicais: false,
+    controle_pedra_papel_tesoura: false,
     
     //comandos
     prefixo: ".",
+    ajuda: "ajuda",
+    notas_musicais: "n",
     
-    // dados
+    // comando dados
     rolar_dado: "r",
     dado: "d",
     alterna_modo_dado: "alterar_modo_dado",
 
-    // baralho
-    limpar: "limparbaralho",
+    // comando baralho
     embaralhar: "embaralhar",
-    sacar_carta: "b",
+    sacar_carta: "s",
     naipe_paus: ":clubs:",
     naipe_ouros: ":diamonds:",
     naipe_espadas: ":spades:",
     naipe_copas: ":hearts:",
     coringa: ":joker:",
 
-
-    // formatacao de texto
+    // formatacao de texto discord
     format_negrito: "**",
     format_comentario: "`"
 };

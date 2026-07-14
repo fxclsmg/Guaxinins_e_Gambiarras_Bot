@@ -14,7 +14,7 @@ function executar(msg) {
     let resposta = null;
 
     // lê comando simplificado de dados
-    if (config.dados_simplificados) {
+    if (config.controle_dado_simples) {
         if (/^\d*d\d+$/i.test(msg.content)) {
             resposta = dados(msg.content);
             if (resposta.length <= 2000) {           
@@ -50,11 +50,11 @@ function executar(msg) {
         resposta = dados(comando);
     }
 
-    // altera modo do dado
+    // altera modo do dado simples
     else if (mensagem.startsWith(config.alterna_modo_dado)) {
-        config.dados_simplificados = !config.dados_simplificados;
+        config.controle_dado_simples = !config.controle_dado_simples;
         resposta = "Modo do dado alterado para ";         
-        resposta += config.dados_simplificados ? "simples" : "comando";
+        resposta += config.controle_dado_simples ? "simples" : "comando";
     }
 
     // baralho 

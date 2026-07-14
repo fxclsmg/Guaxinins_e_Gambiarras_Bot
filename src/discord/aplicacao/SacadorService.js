@@ -2,6 +2,18 @@ const Baralho = require("../../dominio/Baralho");
 const Canal = require("../../dominio/Canal");
 const config = require("../../config");
 let canais = [];
+let tempo = 1000*60*60*6;
+
+function resetarMemoria()
+{
+    for (let i = 0; i < canais.length; i++) {
+        if (canais[i].baralho.dataHoraCriacao + tempo < Date.now() ) {
+            canais.splice(i,1);
+        }
+    }
+}
+
+setInterval(resetarMemoria, tempo);
 
 class SacadorService {
 
